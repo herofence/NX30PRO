@@ -1,4 +1,4 @@
-name: Build immortalWrt
+name: NX30PRO
 
 on:
   schedule:
