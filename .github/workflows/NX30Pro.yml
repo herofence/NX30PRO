@@ -59,7 +59,7 @@ jobs:
         working-directory: /workdir
         run: |
           cd immortalWrt
-          LATEST_RELEASE=`curl -H "Authorization: token ${{ secrets.GH_TOKEN }}" --silent  "https://api.github.com/repos/vivian8421/NX30Pro-immortalwrt-bulid/releases/latest" | jq -r .name`
+          LATEST_RELEASE=`curl -H "Authorization: token ${{ secrets.GH_TOKEN }}" --silent  "https://github.com/herofence/NX30PRO/releases/latest" | jq -r .name`
           if [[ "$LATEST_RELEASE" == *"${{ env.LAST_SHORT_HASH }}"* ]]; then
             echo "already exists in the latest release, stopping compile..."
             echo "::set-output name=status::false"
@@ -212,8 +212,8 @@ jobs:
       - name: Update latest tag
         if: steps.checkNeed.outputs.status == 'success'
         run: |
-          git config --local user.email "vivian84217963@gmail.com"
-          git config --local user.name "vivian8421"
+          git config --local user.email "herofence@qq.com"
+          git config --local user.name "herofence"
           git pull --unshallow
           git tag -f latest ${{ steps.release_tag.outputs.date_prefix }}-${{ env.LAST_SHORT_HASH }}
           git push origin --tags -f
